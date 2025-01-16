@@ -120,7 +120,7 @@ func validateUpdateForQueueName(oldJob, newJob GenericJob) field.ErrorList {
 }
 
 func validateUpdateForWorkloadPriorityClassName(oldJob, newJob GenericJob) field.ErrorList {
-	allErrs := apivalidation.ValidateImmutableField(workloadPriorityClassName(newJob), workloadPriorityClassName(oldJob), workloadPriorityClassNamePath)
+	allErrs := apivalidation.ValidateImmutableField(WorkloadPriorityClassName(newJob.Object()), WorkloadPriorityClassName(oldJob.Object()), workloadPriorityClassNamePath)
 	return allErrs
 }
 

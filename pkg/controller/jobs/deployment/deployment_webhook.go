@@ -87,6 +87,11 @@ func (wh *Webhook) Default(ctx context.Context, obj runtime.Object) error {
 		}
 	}
 
+	if priorityClass := jobframework.WorkloadPriorityClassName(deployment.Object()); priorityClass != "" {
+		log.V(5).Info("Propagating priority-class")
+		deployment.Spec.Template.Labels[constants.WorkloadPriorityClassLabel] = priorityClass
+	}
+
 	return nil
 }
 
